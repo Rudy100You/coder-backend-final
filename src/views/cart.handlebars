@@ -1,25 +1,14 @@
-
 <div class="container">
-  <h2>Carrito</h2>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Code</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Stock</th>
-      </tr>
-      
-    </thead>
-
-    <tbody> 
-    {{#each products}}
-      <tr>
-        <td>{{product.code}}</td>
-        <td><a class="page-link" href="../product/{{_id}}" >{{product.title}}</a></td>
-        <td>${{product.price}}</td>
-        <td>{{product.stock}}</td>
-      </tr>
-    {{/each}}
-  </table>
-</div>
+    <h1>Your Shopping Cart</h1>
+    <div id="cart-items">
+      {{#each data}}
+        <div class="cart-item">
+          <p>Product ID: {{this.productId}}</p>
+          <p>Quantity: {{this.quantity}}</p>
+          <button onclick="removeItem('{{this.productId}}')">Remove</button>
+        </div>
+      {{/each}}
+    </div>
+    <button onclick="finalizePurchase()">Finalize Purchase</button>
+  </div>
+<script src="js/cart.js"></script>

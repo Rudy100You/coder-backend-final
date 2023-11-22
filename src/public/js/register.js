@@ -16,7 +16,7 @@ $(document).ready(function () {
         }
       }).then(res=>{
         if(res.status === 200){
-          window.location.replace("/profile")
+          window.location.replace("/login")
         }
       })
     });

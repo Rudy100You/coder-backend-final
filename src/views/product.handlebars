@@ -4,7 +4,7 @@
     <div class="col-lg-6">
       <div id="productCarousel" class="carousel slide border border-success" data-ride="carousel">
         <ul class="carousel-indicators">
-        {{#each thumbnails}}
+        {{#each data.thumbnails}}
         <li data-target="#productCarousel" data-slide-to="{{@index}}"
         {{#if @first}}
          class="active"
@@ -14,7 +14,7 @@
         </ul>
 
         <div class="carousel-inner">
-           {{#each thumbnails}}
+           {{#each data.thumbnails}}
           <div class="carousel-item active">
             <img src="{{this}}" class="d-block w-100" alt="Product Image {{@index}}">
           </div>
@@ -34,11 +34,11 @@
 
     <div class="col-lg-6">
       <!-- Product Description -->
-      <h2>{{title}}</h2>
-      <p>{{description}}</p>
+      <h2>{{data.title}}</h2>
+      <p>{{data.description}}</p>
       <!-- Add more product description content as needed -->
       <p class="font-weight-bold">Price: ${{price}}</p>
-      <button class="btn btn-success">Add to Cart</button>
+      <button class="btn btn-success" onclick="addProductToCart('{{data._id}}')">Add to Cart</button>
     </div>
   </div>
 </div>

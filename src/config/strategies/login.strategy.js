@@ -14,6 +14,7 @@ export default () => new Strategy(
       usernameField: "email",
     },
 
+    //TODO: fix known vulnerabilities on ADMIN
     async (req, email, password, done) => {
 
       try {
@@ -32,9 +33,9 @@ export default () => new Strategy(
           }
           if (!isValidPassword(user, password)) 
             return done(null, false);
+          await userService.setLastConnected(user);
         }
         logger.debug(`User logged in successfully ${JSON.stringify(user)}`)
-        await userService.setLastConnected(email);
         return done(null, userService.removeSensitiveUserData(user));
       } catch (error) {
         return done(null, false);

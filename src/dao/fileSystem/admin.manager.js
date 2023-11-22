@@ -12,7 +12,7 @@ class AdminManager {
     }
     async findAdminByEmailAndPassword(email,password){
             const adminUsers = await this.parseDataFromFile()
-            const adminUser = adminUsers.admins.find((user)=> user.email === email && user.password === password )
+            const adminUser = adminUsers.admins.find((user)=> user.email.toLowerCase() === email.toLowerCase() && user.password === password )
             return adminUser
         }
 

@@ -13,6 +13,7 @@ const findLowestMDBError = (error)=>{
 
 // eslint-disable-next-line no-unused-vars
 export const errorHandler = (error,req,res, next)=>{
+    if (error){
     logger.debug(error.message)
     logger.error(error.cause);
 
@@ -53,4 +54,9 @@ export const errorHandler = (error,req,res, next)=>{
                 return res.status(500).send({status:"error", message: "Unhandled Error"})
         }
     }
+}
+else
+{
+    logger.debug("Endpoint resolved without issues")
+}
 }

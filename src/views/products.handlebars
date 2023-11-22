@@ -30,14 +30,14 @@
     </thead>
 
     <tbody> 
-    {{#each payload}}
+    {{#each data.payload}}
       <tr>
-        <td>{{code}}</td>
-        <td><a class="page-link" href="../product/{{_id}}" >{{title}}</a></td>
-        <td>${{price}}</td>
-        <td>{{stock}}</td>
+        <td>{{this.code}}</td>
+        <td><a class="page-link" href="../product/{{this._id}}" >{{this.title}}</a></td>
+        <td>${{this.price}}</td>
+        <td>{{this.stock}}</td>
         <td>
-          <button type="button" class="btn btn-success" onclick="addProductToCart()">Add to Cart</button>
+          <button type="button" class="btn btn-success" onclick="addProductToCart('{{this._id}}')">Add to Cart</button>
         </td>
       </tr>
     {{/each}}
@@ -50,14 +50,14 @@
 
 
   <ul class="pagination">
-    <li class="page-item {{#unless hasPrevPage}} disabled {{/unless}}">
-      <a class="page-link" href="{{prevPage}}" {{#unless hasPrevPage}} tabindex="-1"{{/unless}}>Previous</a>
+    <li class="page-item {{#unless data.hasPrevPage}} disabled {{/unless}}">
+      <a class="page-link" href="{{data.prevPage}}" {{#unless data.hasPrevPage}} tabindex="-1"{{/unless}}>Previous</a>
     </li>
     <li class="page-item active">
-      <a class="page-link" href="{{page}}">{{page}} <span class="sr-only">(current)</span></a>
+      <a class="page-link" href="{{data.page}}">{{data.page}} <span class="sr-only">(current)</span></a>
     </li>
-    <li class="page-item {{#unless hasNextPage}} disabled {{/unless}}">
-      <a class="page-link" href="{{nextPage}}" {{#unless hasNextPage}} tabindex="-1"{{/unless}}>Next</a>
+    <li class="page-item {{#unless data.hasNextPage}} disabled {{/unless}}">
+      <a class="page-link" href="{{data.nextPage}}" {{#unless data.hasNextPage}} tabindex="-1"{{/unless}}>Next</a>
     </li>
   </ul>
 </div>

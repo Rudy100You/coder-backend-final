@@ -9,7 +9,7 @@ import MongoStore from "connect-mongo";
 import mongoose from "mongoose";
 import initializePassport from "./config/passport.config.js";
 import passport from "passport";
-import { validateResetKey, validateSessionAfterLogin } from "./utils/middlewares/session.validations.js";
+import { validateResetKey, redirectIfAlreadyLoggedIn } from "./utils/middlewares/session.validations.js";
 import apiRouter from "./routes/api.router.js";
 import {errorHandler} from "./utils/middlewares/error.handler.js";
 import { addLogger, logger } from "./utils/middlewares/logger.handler.js";
@@ -69,12 +69,12 @@ mongoose
     
     app.use("/api", apiRouter);
 
-    app.get("/login", validateSessionAfterLogin, async (req, res) => {
+    app.get("/login", redirectIfAlreadyLoggedIn, async (req, res) => {
       
       res.render("login", {});
     });
 
-    app.get("/register", validateSessionAfterLogin, async (req, res) => {
+    app.get("/register", redirectIfAlreadyLoggedIn, async (req, res) => {
       res.render("register", {});
     });
 

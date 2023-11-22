@@ -127,7 +127,7 @@ export default class CartController {
     }
   };
 
-  deleteAllProductsFromCart = async (req, res,next) => {
+  deleteAllProductsFromCart  = async (req, res,next) => {
     try {
       const { cid } = req.params;
       await this.cartService.deleteAllProductsFromCart(cid);

@@ -54,3 +54,12 @@ export const convertPublicLocalFileToURL = (path)=>{
   return newPath;
 }
 export const validateEmailFormat= (email)=> new RegExp(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/).test(email)
+
+export const purgeNullValuesFromObject = (a)=>{
+for (const key in a) {
+  if (a[key] === null || a[key] === undefined) {
+    delete a[key];
+  }
+}
+return a
+}
