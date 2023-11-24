@@ -22,10 +22,11 @@ const productRepository = new ProductRepository();
 const userService = new UserService(new UserRepository());
 const cartService = new CartService(productRepository, new CartRepository());
 const productService = new ProductService(productRepository);
+const HTTPS_RAILWAY_PUBLIC_DOMAIN = RAILWAY_PUBLIC_DOMAIN? `https://${RAILWAY_PUBLIC_DOMAIN}`: null;
 
 export const getTestURLForRequester = () => {
-  const testUrl = RAILWAY_PUBLIC_DOMAIN || APP_URL
-    ? `${RAILWAY_PUBLIC_DOMAIN || APP_URL}:8080`
+  const testUrl = HTTPS_RAILWAY_PUBLIC_DOMAIN || APP_URL
+    ? `${HTTPS_RAILWAY_PUBLIC_DOMAIN || APP_URL}:8080`
     : `http://localhost:${PORT || 4000}`;
   console.log(`Using test url: ${testUrl}`);
   return testUrl;

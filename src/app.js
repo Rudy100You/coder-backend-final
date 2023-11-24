@@ -17,6 +17,8 @@ import swaggerUiExpress from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerOptions from "./config/options/swagger.options.js";
 
+const HTTPS_RAILWAY_PUBLIC_DOMAIN = RAILWAY_PUBLIC_DOMAIN? `https://${RAILWAY_PUBLIC_DOMAIN}`: null;
+
 const MONGO_URL = `mongodb+srv://${MDB_USER}:${MDB_PASS}@${MDB_HOST}/${DATABASE_NAME}?retryWrites=true&w=majority`;
 
 const app = express();
@@ -124,6 +126,6 @@ mongoose
     });*/
 
     app.listen(PORT??4000, () => {
-      logger.info(`Servidor iniciado en ${ RAILWAY_PUBLIC_DOMAIN	 || PROD_ENDPOINT + PORT || "https://localhost:"+ 4000  +"/"} con éxito`);
+      logger.info(`Servidor iniciado en ${ HTTPS_RAILWAY_PUBLIC_DOMAIN	 || PROD_ENDPOINT + PORT || "https://localhost:"+ 4000  +"/"} con éxito`);
     });
   });
