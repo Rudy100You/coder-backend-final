@@ -6,14 +6,16 @@ import UserRepository from "../../dao/repository/user.repository.js";
 const userService = new UserService(new UserRepository())
 const {ENV_STAGE,PORT,APP_URL, RAILWAY_PUBLIC_DOMAIN} = process.env
 
+const ghCallbackURL = (ENV_STAGE === "PROD"
+          ? RAILWAY_PUBLIC_DOMAIN || APP_URL
+          : "http://localhost:" + (PORT || 4000)) + "/api/sessions/github/callback"
+
 export default (clientID, clientSecret)=> new GitHubStrategy(
     {
       clientID,
       clientSecret,
       callbackURL:
-        (ENV_STAGE === "PROD"
-          ? RAILWAY_PUBLIC_DOMAIN || APP_URL
-          : "http://localhost:" + PORT ?? 4000) + "/api/sessions/github/callback",
+      ghCallbackURL,
       scope: ['user:email'],
     },
     async (accessToken, refreshToken, profile, done) => {
