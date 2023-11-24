@@ -47,7 +47,7 @@ export const errorHandler = (error,req,res, next)=>{
             case ErrorTypes.ENTITY_DOES_NOT_EXIST_ERROR:
                 return res.status(404).send({status:"error", message: `${error.entityType}${  error.entityID? " with id [" + error.entityID +"] " : " "}"does not exist`})
             case ErrorTypes.USER_NOT_ALLOWED_ERROR:
-                return res.status(403).send({status:"error", message: `Current user is not allowed to make this request`})
+                return res.status(403).send({status:"error", message: error.cause ?? `Current user is not allowed to make this request`})
             case ErrorTypes.INLINE_CUSTOM_ERROR:
                 return res.status(error.status).send({status:"error", message: error.message})
            default:

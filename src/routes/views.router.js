@@ -49,20 +49,20 @@ viewsRouter.get("/products/:pgid?", async (req, res) => {
 
 viewsRouter.get("/product/:pid", async (req, res) => {
   const { pid } = req.params;
-  let products;
+  let product;
   try {
-    products = await productService.findproductById(pid);
+    product = await productService.findproductById(pid);
   } catch (err) {
     console.error(err);
   }
-  res.render("product", viewContext(req,products));
+  res.render("product", viewContext(req,product));
 });
 
 viewsRouter.get("/carts/:cid", currentUserCanHaveCarts, async (req, res) => {
   const { cid } = req.params;
   let cart;
   try {
-    cart = await cartService.findcartById(cid);
+    cart = await cartService.findCartPopulatedById(cid);
   } catch (err) {
     console.error(err);
   }

@@ -17,7 +17,12 @@ export const cartsSchema = mongoose.Schema(
     products: {
       type: [cartProductSchema],
       required: true
-    }
+    },
+    expiresAt: {
+      type: Date,
+      expires: 3600, // The TTL index will handle document expiration
+      default: Date.now, // Set the default expiration date
+    },
   },
   { versionKey: false}
 );

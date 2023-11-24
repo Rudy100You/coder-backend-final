@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import {
+  RAILWAY_PUBLIC_DOMAIN,
   APP_URL,
   DATABASE_NAME,
   MDB_HOST,
@@ -23,8 +24,8 @@ const cartService = new CartService(productRepository, new CartRepository());
 const productService = new ProductService(productRepository);
 
 export const getTestURLForRequester = () => {
-  const testUrl = APP_URL
-    ? `${APP_URL}:8080`
+  const testUrl = RAILWAY_PUBLIC_DOMAIN || APP_URL
+    ? `${RAILWAY_PUBLIC_DOMAIN || APP_URL}:8080`
     : `http://localhost:${PORT || 4000}`;
   console.log(`Using test url: ${testUrl}`);
   return testUrl;

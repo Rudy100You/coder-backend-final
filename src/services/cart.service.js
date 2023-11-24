@@ -9,6 +9,8 @@ export default class CartService {
   }
   findcartById = async (id) => 
     await this.cartRepository.getOne(id);
+  findCartPopulatedById = async (id) => 
+    await this.cartRepository.getOnePopulated(id);
   findcartByCriteria = async (criteria) =>
     await this.cartRepository.getOneByCriteria(criteria);
   createCart = async (cart) => 

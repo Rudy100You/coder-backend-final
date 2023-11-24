@@ -28,7 +28,8 @@ $(document).ready(function () {
         $("#rememberMeCheck").after($('<div class="alert alert-danger" role="alert" id="incorrectPassOrEmailAlert">').text("Password or email incorrect. Try Again"))
       }
       if(res.status ===200){
-        window.location.replace("/profile")
+        localStorage.clear();
+        window.location.replace("/profile");
       }
     });
   });

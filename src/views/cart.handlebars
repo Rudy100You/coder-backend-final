@@ -1,14 +1,27 @@
 <div class="container">
     <h1>Your Shopping Cart</h1>
-    <div id="cart-items">
-      {{#each data}}
-        <div class="cart-item">
-          <p>Product ID: {{this.productId}}</p>
-          <p>Quantity: {{this.quantity}}</p>
-          <button onclick="removeItem('{{this.productId}}')">Remove</button>
-        </div>
-      {{/each}}
+    <div id="cart-items" class="row">
+        {{#if data.products.[0]}}
+            {{#each data.products}}
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Product ID: {{this.product.title}}</h5>
+                            <p class="card-text">Quantity: {{this.quantity}}</p>
+                            <button class="btn btn-danger" onclick="removeItem('{{this.product._id}}')">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            <div class="col-md-12">
+                <button class="btn btn-primary" onclick="finalizePurchase()">Finalize Purchase</button>
+            </div>
+        {{else}}
+            <div class="col-md-12">
+                <p>Your cart is empty.</p>
+                <a href="/products" class="btn btn-info">Browse Products</a>
+            </div>
+        {{/if}}
     </div>
-    <button onclick="finalizePurchase()">Finalize Purchase</button>
-  </div>
-<script src="js/cart.js"></script>
+    <script src="/js/cart.js"></script>
+</div>

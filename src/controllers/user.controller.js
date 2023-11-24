@@ -8,7 +8,7 @@ import CustomError from "../utils/errors/CustomError.js";
 import ErrorTypes from "../utils/errors/ErrorTypes.js";
 import fs from "fs";
 import path from "path";
-const { APP_URL, GOOGLE_MAIL_SENDER} = process.env;
+const {RAILWAY_PUBLIC_DOMAIN, APP_URL, GOOGLE_MAIL_SENDER} = process.env;
 const MINUTES_IN_A_DAY = 1440;
 //TODO: Move mail handling to a service, Improve response and error control
 
@@ -94,7 +94,7 @@ export default class UserController {
                 <p>Hello,</p>
                 <p>You've requested a password reset for your account. To reset your password, click the button below:</p>
                 <a href="${
-                  (APP_URL || "http://localhost:4000") +
+                  (RAILWAY_PUBLIC_DOMAIN || APP_URL || "http://localhost:4000") +
                   `/users/reset-password/${
                     (await this.resetKeyService.createResetKey(email))._id
                   }`

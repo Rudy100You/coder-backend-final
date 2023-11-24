@@ -50,7 +50,7 @@ export const convertPublicLocalFileToURL = (path)=>{
   newPath = path.replaceAll("\\", "/");
   const publicWordIndex = newPath.indexOf("public");
   newPath = newPath.substring(publicWordIndex, path.length)
-  newPath = `${process.env.APP_URL||`http://localhost:${process.env.PORT||4000}`}/${newPath}`
+  newPath = `${process.env.RAILWAY_PUBLIC_DOMAIN || process.env.APP_URL||`http://localhost:${process.env.PORT||4000}`}/${newPath}`
   return newPath;
 }
 export const validateEmailFormat= (email)=> new RegExp(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/).test(email)

@@ -4,7 +4,7 @@ import UserService from "../../services/user.service.js";
 import UserRepository from "../../dao/repository/user.repository.js";
 
 const userService = new UserService(new UserRepository())
-const {ENV_STAGE,PORT,APP_URL} = process.env
+const {ENV_STAGE,PORT,APP_URL, RAILWAY_PUBLIC_DOMAIN} = process.env
 
 export default (clientID, clientSecret)=> new GitHubStrategy(
     {
@@ -12,7 +12,7 @@ export default (clientID, clientSecret)=> new GitHubStrategy(
       clientSecret,
       callbackURL:
         (ENV_STAGE === "PROD"
-          ? APP_URL
+          ? RAILWAY_PUBLIC_DOMAIN || APP_URL
           : "http://localhost:" + PORT ?? 4000) + "/api/sessions/github/callback",
       scope: ['user:email'],
     },

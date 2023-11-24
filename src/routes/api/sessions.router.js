@@ -73,7 +73,7 @@ sessionsRouter.get(
 sessionsRouter.use(validateActiveSession);
 sessionsRouter.get("/logout", async (req, res, next) => {
   try{
-  await userService.setLastConnected(req.user);
+        await userService.setLastConnected(req.user);
   req.session.destroy((err) => {
     if (err) {
       //logger.error("Error destroying session:", err);
@@ -84,7 +84,6 @@ sessionsRouter.get("/logout", async (req, res, next) => {
         .status(200)
         .send({ status: "success", message: "Session destroyed sucessfully" });
     }
-    res.redirect("/login");
   });
 }catch(err){
 next(err)}

@@ -5,6 +5,7 @@ import { __root_dirname, pathJoin } from "../utils/utils.js";
 dotenv.config({ path: pathJoin(__root_dirname, ".env" )});
 
 export const {
+  RAILWAY_PUBLIC_DOMAIN,
   ENV_STAGE,
   MDB_USER,
   MDB_PASS,

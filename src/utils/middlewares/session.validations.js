@@ -59,7 +59,7 @@ export const currentUserHasProductManipulationPrivileges = (req, res, next) => {
   ) {
     next();
   } else {
-    if (isAPIrequest)
+    if (isAPIrequest(req))
       CustomError.throwNewError({ name: ErrorTypes.USER_NOT_ALLOWED_ERROR });
     return res.redirect("/error");
   }
@@ -69,12 +69,12 @@ export const currentUserCanHaveCarts = (req, res, next) => {
   if (
     req.isAuthenticated() &&
     isValidRole(req.user.role) &&
-    !equalsIgnoreCase("ADMIN")
+    !equalsIgnoreCase(req.user.role, "ADMIN")
   ) {
     next();
   } else {
-    if (isAPIrequest)
-      CustomError.throwNewError({ name: ErrorTypes.USER_NOT_ALLOWED_ERROR });
+    if (isAPIrequest(req))
+      CustomError.throwNewError({ name: ErrorTypes.USER_NOT_ALLOWED_ERROR, cause: "Current user can't have a cart" , message: "Current user can't have a cart"});
     return res.redirect("/error");
   }
 };

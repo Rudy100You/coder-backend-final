@@ -1,5 +1,5 @@
 import express from "express";
-import {DATABASE_NAME, GH_CLIENT_ID, GH_SESSION_SECRET, MDB_HOST, MDB_PASS, MDB_USER, PORT, PROD_ENDPOINT} from "./config/dotenv.config.js";
+import {DATABASE_NAME, GH_CLIENT_ID, GH_SESSION_SECRET, MDB_HOST, MDB_PASS, MDB_USER, PORT, PROD_ENDPOINT, RAILWAY_PUBLIC_DOMAIN} from "./config/dotenv.config.js";
 import { __src_dirname, pathJoin} from "./utils/utils.js";
 import handlebars from "express-handlebars";
 import viewsRouter from "./routes/views.router.js";
@@ -124,6 +124,6 @@ mongoose
     });*/
 
     app.listen(PORT??4000, () => {
-      logger.info(`Servidor iniciado en ${ PROD_ENDPOINT + PORT || "https://localhost:"+ 4000  +"/"} con éxito`);
+      logger.info(`Servidor iniciado en ${ RAILWAY_PUBLIC_DOMAIN	 || PROD_ENDPOINT + PORT || "https://localhost:"+ 4000  +"/"} con éxito`);
     });
   });

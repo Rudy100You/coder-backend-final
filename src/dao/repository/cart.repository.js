@@ -8,7 +8,12 @@ export default class CartRepository extends CommonMDBRepository {
 
   async getOne(id) {
     const cart = await this.baseModel
-      .findOne({ _id: id },null,{lean:true})
+      .findOne({ _id: id },null,{lean:true}).select("-expiresAt")
+    return cart;
+  }
+  async getOnePopulated(id) {
+    const cart = await this.baseModel
+      .findOne({ _id: id },null,{lean:true}).select("-expiresAt")
       .populate("products.product");
     return cart;
   }

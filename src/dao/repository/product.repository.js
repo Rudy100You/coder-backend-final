@@ -6,6 +6,10 @@ export default class ProductRepository extends CommonMDBRepository {
     super("products", productSchema);
   }
 
+  async getOne(id){
+    return await this.baseModel.findById(id).lean()
+  }
+
   async getAllPaginated(limit = 10, page =1, query, sort) {
     sort =  ['asc','desc'].includes(sort)? {price: sort} :null;
     const customLabels = { docs: "payload" }
